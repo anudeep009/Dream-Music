@@ -3,6 +3,8 @@ import { Header } from './components/layout/Header';
 import { ArtistHeader } from './components/artist/ArtistHeader';
 import { PopularTracks } from './components/tracks/PopularTracks';
 import { NowPlaying } from './components/player/NowPlaying';
+import "@fontsource/poppins";
+
 
 function App() {
   return (

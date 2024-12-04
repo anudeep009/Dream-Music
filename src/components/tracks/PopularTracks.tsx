@@ -46,7 +46,7 @@ const tracks = [
 
 export function PopularTracks() {
   return (
-    <div className="mt-8">
+    <div className="font-poppins mt-8">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold text-white">Popular</h2>
         <button className="text-sm font-medium text-neutral-400 transition-colors hover:text-white">

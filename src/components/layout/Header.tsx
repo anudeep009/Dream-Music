@@ -4,7 +4,7 @@ const navItems = ['Music', 'Podcast', 'Live', 'Radio'];
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-10 flex items-center justify-between bg-gradient-to-b from-[#4C0000] to-transparent p-6 backdrop-blur-sm">
+    <header className="font-poppins sticky top-0 z-10 flex items-center justify-between bg-gradient-to-b from-[#4C0000] to-transparent p-6 backdrop-blur-sm">
       <nav>
         <ul className="flex gap-8">
           {navItems.map((item) => (

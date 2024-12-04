@@ -3,7 +3,7 @@ import { Slider } from '@/components/ui/slider';
 
 export function NowPlaying() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-[#0A0A0A] to-[#0A0A0A]/90 p-4 backdrop-blur-lg lg:relative lg:h-screen lg:w-80">
+    <div className="font-poppins fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-[#0A0A0A] to-[#0A0A0A]/90 p-4 backdrop-blur-lg lg:relative lg:h-screen lg:w-80">
       <div className="flex flex-col items-center">
         <img
           src="https://images.unsplash.com/photo-1583795128727-6ec3642408f8?auto=format&fit=crop&q=80&w=300"
