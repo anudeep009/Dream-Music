@@ -11,10 +11,12 @@ function App() {
     <div className="flex min-h-screen bg-[#0A0A0A]">
       <Sidebar />
       
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto bg-gradient-to-b from-red-900/50 to-transparent">
         <Header />
-        <div className="p-4 lg:p-8">
-          <ArtistHeader />
+        <div>
+          <div className="p-4 lg:p-8">
+            <ArtistHeader />
+          </div>
           <PopularTracks />
         </div>
       </main>

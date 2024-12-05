@@ -46,22 +46,22 @@ const tracks = [
 
 export function PopularTracks() {
   return (
-    <div className="font-poppins mt-8">
+    <div className="font-poppins mt-4 w-full">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-white">Popular</h2>
-        <button className="text-sm font-medium text-neutral-400 transition-colors hover:text-white">
+        <h2 className="text-xl ml-6 font-bold text-white">Popular</h2>
+        <button className="text-sm font-medium text-neutral-400 mr-6 transition-colors hover:text-white">
           See All
         </button>
       </div>
-      <div className="mt-4 overflow-hidden rounded-xl">
-        <table className="w-full table-fixed">
+      <div className="mt-2 overflow-hidden rounded-xl">
+        <table className="w-full table-fixed text-neutral-200">
           <thead>
             <tr className="border-b border-neutral-800 text-left text-sm text-neutral-400">
               <th className="w-12 p-4">#</th>
               <th className="p-4">TITLE</th>
               <th className="hidden p-4 md:table-cell">PLAYING</th>
-              <th className="w-20 p-4">
-                <Clock className="h-4 w-4" />
+              <th className="w-20 p-4 text-center">
+                <Clock className="h-4 w-4 mx-auto" />
               </th>
               <th className="hidden p-4 lg:table-cell">ALBUM</th>
             </tr>
@@ -70,8 +70,8 @@ export function PopularTracks() {
             {tracks.map((track) => (
               <tr
                 key={track.id}
-                className={`group cursor-pointer text-neutral-400 transition-colors hover:bg-neutral-800/50 ${
-                  track.isPlaying && 'bg-gradient-to-r from-red-900/50 to-transparent text-white'
+                className={`group cursor-pointer text-neutral-200 transition-colors hover:bg-red-900/10 ${
+                  track.isPlaying && 'bg-red-900/50 to-transparent text-white'
                 }`}
               >
                 <td className="p-4">
@@ -91,7 +91,7 @@ export function PopularTracks() {
                   </div>
                 </td>
                 <td className="hidden p-4 md:table-cell">{track.plays}</td>
-                <td className="p-4">{track.duration}</td>
+                <td className="p-4 text-center">{track.duration}</td>
                 <td className="hidden truncate p-4 lg:table-cell">{track.album}</td>
               </tr>
             ))}

@@ -2,7 +2,7 @@ import { Play } from "lucide-react";
 
 export function ArtistHeader() {
   return (
-    <div className="font-poppins relative h-[400px] overflow-hidden rounded-3xl bg-gradient-to-b from-[#4C0000] to-[#0A0A0A]">
+    <div className="font-poppins relative h-[300px] overflow-hidden rounded-3xl bg-gradient-to-b from-[#4C0000] to-[#0A0A0A]">
       <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
       <img
         src="https://images.unsplash.com/photo-1583795128727-6ec3642408f8?auto=format&fit=crop&q=80&w=1200"
