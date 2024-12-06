@@ -1,4 +1,5 @@
 import { Play, Clock } from 'lucide-react';
+import '../../css/scroll.css'
 
 const tracks = [
   {
@@ -54,49 +55,51 @@ export function PopularTracks() {
         </button>
       </div>
       <div className="mt-2 overflow-hidden rounded-xl">
-        <table className="w-full table-fixed text-neutral-200">
-          <thead>
-            <tr className="border-b border-neutral-800 text-left text-sm text-neutral-400">
-              <th className="w-12 p-4">#</th>
-              <th className="p-4">TITLE</th>
-              <th className="hidden p-4 md:table-cell">PLAYING</th>
-              <th className="w-20 p-4 text-center">
-                <Clock className="h-4 w-4 mx-auto" />
-              </th>
-              <th className="hidden p-4 lg:table-cell">ALBUM</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tracks.map((track) => (
-              <tr
-                key={track.id}
-                className={`group cursor-pointer text-neutral-200 transition-colors hover:bg-red-900/10 ${
-                  track.isPlaying && 'bg-red-900/50 to-transparent text-white'
-                }`}
-              >
-                <td className="p-4">
-                  <div className="relative flex h-12 w-12 items-center justify-center">
-                    <span className="group-hover:hidden">{track.id}</span>
-                    <Play className="hidden h-4 w-4 group-hover:block" />
-                  </div>
-                </td>
-                <td className="p-4">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={track.cover}
-                      alt={track.title}
-                      className="h-12 w-12 rounded-md object-cover"
-                    />
-                    <span className="font-medium">{track.title}</span>
-                  </div>
-                </td>
-                <td className="hidden p-4 md:table-cell">{track.plays}</td>
-                <td className="p-4 text-center">{track.duration}</td>
-                <td className="hidden truncate p-4 lg:table-cell">{track.album}</td>
+        <div className="max-h-80 overflow-y-auto scrollbar-hidden"> 
+          <table className="w-full table-fixed text-neutral-200">
+            <thead>
+              <tr className="border-b border-neutral-800 text-left text-sm text-neutral-400">
+                <th className="w-12 p-4">#</th>
+                <th className="p-4">TITLE</th>
+                <th className="hidden p-4 md:table-cell">PLAYING</th>
+                <th className="w-20 p-4 text-center">
+                  <Clock className="h-4 w-4 mx-auto" />
+                </th>
+                <th className="hidden p-4 lg:table-cell">ALBUM</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {tracks.map((track) => (
+                <tr
+                  key={track.id}
+                  className={`group cursor-pointer text-neutral-200 transition-colors hover:bg-red-900/10 ${
+                    track.isPlaying && 'bg-red-900/50 to-transparent text-white'
+                  }`}
+                >
+                  <td className="p-4">
+                    <div className="relative flex h-12 w-12 items-center justify-center">
+                      <span className="group-hover:hidden">{track.id}</span>
+                      <Play className="hidden h-4 w-4 group-hover:block" />
+                    </div>
+                  </td>
+                  <td className="p-4">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={track.cover}
+                        alt={track.title}
+                        className="h-12 w-12 rounded-md object-cover"
+                      />
+                      <span className="font-medium">{track.title}</span>
+                    </div>
+                  </td>
+                  <td className="hidden p-4 md:table-cell">{track.plays}</td>
+                  <td className="p-4 text-center">{track.duration}</td>
+                  <td className="hidden truncate p-4 lg:table-cell">{track.album}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

@@ -1,22 +1,26 @@
 import { Play, SkipBack, SkipForward, Repeat, Shuffle } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 
+
 export function NowPlaying() {
   return (
-    <div className="font-poppins mt-[200px] fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-[#0A0A0A] to-[#0A0A0A]/90 p-4 backdrop-blur-lg lg:relative lg:h-screen lg:w-80">
+    <div className='mt-[200px]'>
+      <div className="fixed bottom-0 left-0 right-0 bg-red-900/80 z-50 p-20 backdrop-blur-lg lg:relative lg:h-screen lg:w-80">
       <div className="flex flex-col items-center">
+        <h3 className="hidden lg:block text-lg font-bold text-white mb-2">Now Playing</h3>
+        
         <img
           src="https://images.unsplash.com/photo-1583795128727-6ec3642408f8?auto=format&fit=crop&q=80&w=300"
           alt="Now Playing"
-          className="aspect-square w-full rounded-2xl object-cover"
+          className="aspect-square rounded-2xl object-cover lg:block hidden"
         />
-        
+
         <div className="mt-2 w-full text-center">
           <h3 className="text-lg font-bold text-white">Beat It</h3>
           <p className="text-sm text-neutral-400">Michael Jackson</p>
         </div>
 
-        <div className="mt-8 w-full">
+        <div className="mt-4 w-full">
           <Slider defaultValue={[33]} max={100} step={1} className="w-full" />
           <div className="mt-1 flex justify-between text-xs text-neutral-400">
             <span>2:15</span>
@@ -24,7 +28,7 @@ export function NowPlaying() {
           </div>
         </div>
 
-        <div className="mt-4 flex w-full items-center justify-center gap-4">
+        <div className="mt-4 flex w-full items-center justify-center gap-2">
           <button className="rounded-full p-2 text-neutral-400 transition-colors hover:text-white">
             <Shuffle className="h-5 w-5" />
           </button>
@@ -41,11 +45,8 @@ export function NowPlaying() {
             <Repeat className="h-5 w-5" />
           </button>
         </div>
-
-        <div className="mt-4 w-full">
-          <Slider defaultValue={[80]} max={100} step={1} className="w-full" />
-        </div>
       </div>
+    </div>
     </div>
   );
 }

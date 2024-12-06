@@ -14,7 +14,7 @@ const generalItems = [
 
 export function Sidebar() {
   return (
-    <aside className="font-poppins fixed left-0 top-0 z-50 h-screen w-20 bg-[#0A0A0A] p-4 text-white transition-all duration-300 ease-in-out hover:w-64 lg:relative lg:w-64">
+    <aside className="font-poppins fixed left-0 top-0 z-50 w-20 bg-[#0A0A0A] p-4 text-white transition-all duration-300 ease-in-out hover:w-64 lg:relative lg:w-64">
       {/* Header */}
       <div className="flex items-center gap-3 pb-8">
         <div className="flex h-12 w-12 items-center justify-center rounded-lg">
@@ -26,7 +26,7 @@ export function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="space-y-[350px]">
+      <nav className="space-y-[280px]">
         {/* Menu Section */}
         <div>
           <h2 className="mb-4 text-sm font-semibold uppercase text-neutral-500 tracking-wider">

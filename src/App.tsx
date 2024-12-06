@@ -5,13 +5,12 @@ import { PopularTracks } from './components/tracks/PopularTracks';
 import { NowPlaying } from './components/player/NowPlaying';
 import "@fontsource/poppins";
 
-
 function App() {
   return (
-    <div className="flex min-h-screen bg-[#0A0A0A]">
+    <div className="flex bg-[#0A0A0A]">
       <Sidebar />
-      
-      <main className="flex-1 overflow-auto bg-gradient-to-b from-red-900/50 to-transparent">
+
+      <main className="flex-1 overflow-auto bg-gradient-to-b from-red-900/50 to-transparent pb-16 lg:pb-0">
         <Header />
         <div>
           <div className="p-4 lg:p-8">
