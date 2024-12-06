@@ -5,9 +5,10 @@ import { Slider } from '@/components/ui/slider';
 export function NowPlaying() {
   return (
     <div className='mt-[200px]'>
-      <div className="fixed bottom-0 left-0 right-0 bg-red-900/80 z-50 p-20 backdrop-blur-lg lg:relative lg:h-screen lg:w-80">
-      <div className="flex flex-col items-center">
-        <h3 className="hidden lg:block text-lg font-bold text-white mb-2">Now Playing</h3>
+      <div className="fixed bottom-0 left-0 right-0 lg:relative lg:w-80">
+      <div className='m-6 bg-red-900/80 backdrop-blur-l p-10 rounded-xl'>
+        <div className="flex flex-col items-center">
+        <h3 className="hidden font-bold text-white mb-2">Now Playing</h3>
         
         <img
           src="https://images.unsplash.com/photo-1583795128727-6ec3642408f8?auto=format&fit=crop&q=80&w=300"
@@ -19,7 +20,7 @@ export function NowPlaying() {
           <h3 className="text-lg font-bold text-white">Beat It</h3>
           <p className="text-sm text-neutral-400">Michael Jackson</p>
         </div>
-
+        {/* bg-red-900/80 z-50 p-20 backdrop-blur-l */}
         <div className="mt-4 w-full">
           <Slider defaultValue={[33]} max={100} step={1} className="w-full" />
           <div className="mt-1 flex justify-between text-xs text-neutral-400">
@@ -45,6 +46,7 @@ export function NowPlaying() {
             <Repeat className="h-5 w-5" />
           </button>
         </div>
+      </div>
       </div>
     </div>
     </div>

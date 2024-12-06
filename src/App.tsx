@@ -10,7 +10,7 @@ function App() {
     <div className="flex bg-[#0A0A0A]">
       <Sidebar />
 
-      <main className="flex-1 overflow-auto bg-gradient-to-b from-red-900/50 to-transparent pb-16 lg:pb-0">
+      <main className="flex-1 overflow-auto bg-gradient-to-b from-red-900/50 to-transparent">
         <Header />
         <div>
           <div className="p-4 lg:p-8">
@@ -19,8 +19,9 @@ function App() {
           <PopularTracks />
         </div>
       </main>
-
+      <div className='bg-gradient-to-t from-red-900/50 to-transparent'>
       <NowPlaying />
+      </div>
     </div>
   );
 }
