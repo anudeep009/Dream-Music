@@ -1,7 +1,21 @@
-import { Play, Clock } from 'lucide-react';
-import '../../css/scroll.css'
+import React, { useState } from 'react';
+import { Play, Pause, Clock, Loader } from 'lucide-react';
+import { Howl, Howler } from 'howler';
+import '../../css/scroll.css';
 
-const tracks = [
+Howler.html5PoolSize = 20;
+
+interface Track {
+  id: number;
+  title: string;
+  plays: string;
+  duration: string;
+  album: string;
+  cover: string;
+  url: string;
+}
+
+const tracks: Track[] = [
   {
     id: 1,
     title: 'Billie Jean',
@@ -9,6 +23,7 @@ const tracks = [
     duration: '4:53',
     album: 'Thriller 25 Super Deluxe',
     cover: 'https://images.unsplash.com/photo-1583795128727-6ec3642408f8?auto=format&fit=crop&q=80&w=100',
+    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
   },
   {
     id: 2,
@@ -17,7 +32,7 @@ const tracks = [
     duration: '4:18',
     album: 'Thriller 25 Super Deluxe',
     cover: 'https://images.unsplash.com/photo-1583795128727-6ec3642408f8?auto=format&fit=crop&q=80&w=100',
-    isPlaying: true,
+    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
   },
   {
     id: 3,
@@ -26,6 +41,7 @@ const tracks = [
     duration: '4:17',
     album: 'Thriller 25 Super Deluxe',
     cover: 'https://images.unsplash.com/photo-1583795128727-6ec3642408f8?auto=format&fit=crop&q=80&w=100',
+    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
   },
   {
     id: 4,
@@ -34,6 +50,7 @@ const tracks = [
     duration: '6:05',
     album: 'Bad 25th Anniversary',
     cover: 'https://images.unsplash.com/photo-1583795128727-6ec3642408f8?auto=format&fit=crop&q=80&w=100',
+    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
   },
   {
     id: 5,
@@ -42,10 +59,52 @@ const tracks = [
     duration: '3:40',
     album: 'Off The Wall',
     cover: 'https://images.unsplash.com/photo-1583795128727-6ec3642408f8?auto=format&fit=crop&q=80&w=100',
+    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
   },
 ];
 
-export function PopularTracks() {
+export const PopularTracks: React.FC = () => {
+  const [currentTrackId, setCurrentTrackId] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const sounds: { [key: number]: Howl } = tracks.reduce((acc, track) => {
+    acc[track.id] = new Howl({
+      src: [track.url],
+      html5: true,
+      onload: () => setIsLoading(false),
+      onplay: () => setIsLoading(false),
+      onplayerror: (id, error) => {
+        console.error('Playback error:', error);
+        acc[track.id].once('unlock', () => acc[track.id].play());
+      },
+    });
+    return acc;
+  }, {});
+
+  const handlePlayPause = (id: number) => {
+    if (isLoading) return;
+
+    Howler._autoResume();
+
+    if (currentTrackId === id) {
+      if (sounds[id].playing()) {
+        sounds[id].pause();
+        setCurrentTrackId(null);
+      } else {
+        setIsLoading(true);
+        sounds[id].play();
+        setCurrentTrackId(id);
+      }
+    } else {
+      if (currentTrackId !== null) {
+        sounds[currentTrackId].stop();
+      }
+      setIsLoading(true);
+      sounds[id].play();
+      setCurrentTrackId(id);
+    }
+  };
+
   return (
     <div className="font-poppins mt-4 w-full">
       <div className="flex items-center justify-between">
@@ -55,13 +114,13 @@ export function PopularTracks() {
         </button>
       </div>
       <div className="mt-2 overflow-hidden rounded-xl">
-        <div className="max-h-80 overflow-y-auto scrollbar-hidden"> 
+        <div className="max-h-80 overflow-y-auto scrollbar-hidden">
           <table className="w-full table-fixed text-neutral-200">
             <thead>
               <tr className="border-b border-neutral-800 text-left text-sm text-neutral-400">
                 <th className="w-12 p-4">#</th>
                 <th className="p-4">TITLE</th>
-                <th className="hidden p-4 md:table-cell">PLAYING</th>
+                <th className="hidden p-4 md:table-cell">PLAYS</th>
                 <th className="w-20 p-4 text-center">
                   <Clock className="h-4 w-4 mx-auto" />
                 </th>
@@ -73,13 +132,19 @@ export function PopularTracks() {
                 <tr
                   key={track.id}
                   className={`group cursor-pointer text-neutral-200 transition-colors hover:bg-red-900/10 ${
-                    track.isPlaying && 'bg-red-900/50 to-transparent text-white'
+                    currentTrackId === track.id ? 'bg-red-900/50 text-white' : ''
                   }`}
+                  onClick={() => handlePlayPause(track.id)}
                 >
                   <td className="p-4">
                     <div className="relative flex h-12 w-12 items-center justify-center">
-                      <span className="group-hover:hidden">{track.id}</span>
-                      <Play className="hidden h-4 w-4 group-hover:block" />
+                      {isLoading && currentTrackId === track.id ? (
+                        <Loader className="h-4 w-4 animate-spin" />
+                      ) : currentTrackId === track.id && sounds[track.id].playing() ? (
+                        <Pause className="h-4 w-4" />
+                      ) : (
+                        <Play className="h-4 w-4" />
+                      )}
                     </div>
                   </td>
                   <td className="p-4">
@@ -103,4 +168,4 @@ export function PopularTracks() {
       </div>
     </div>
   );
-}
+};

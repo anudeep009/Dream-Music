@@ -7,7 +7,7 @@ import "@fontsource/poppins";
 
 function App() {
   return (
-    <div className="flex bg-[#0A0A0A]">
+    <div className="flex bg-[#0A0A0A] min-h-screen">
       <Sidebar />
 
       <main className="flex-1 overflow-auto bg-gradient-to-b from-red-900/50 to-transparent">
