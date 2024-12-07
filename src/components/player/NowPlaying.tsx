@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Pause, SkipBack, SkipForward, Repeat, Shuffle } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 
 const tracks = [
   {
