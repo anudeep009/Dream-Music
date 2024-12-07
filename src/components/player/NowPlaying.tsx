@@ -8,7 +8,7 @@ const tracks = [
     id: 1,
     title: 'Beat It',
     artist: 'Michael Jackson',
-    duration: 258, // seconds
+    duration: 258,
     cover: 'https://images.unsplash.com/photo-1583795128727-6ec3642408f8?auto=format&fit=crop&q=80&w=300',
     url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
   },

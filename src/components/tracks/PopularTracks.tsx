@@ -3,6 +3,12 @@ import { Play, Pause, Clock, Loader } from 'lucide-react';
 import { Howl, Howler } from 'howler';
 import '../../css/scroll.css';
 
+declare module 'howler' {
+  interface HowlerGlobal {
+    _autoResume?: () => void;
+  }
+}
+
 Howler.html5PoolSize = 20;
 
 interface Track {
@@ -67,24 +73,25 @@ export const PopularTracks: React.FC = () => {
   const [currentTrackId, setCurrentTrackId] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const sounds: { [key: number]: Howl } = tracks.reduce((acc, track) => {
+  // Define the sounds object with proper typing
+  const sounds: Record<number, Howl> = tracks.reduce((acc, track) => {
     acc[track.id] = new Howl({
       src: [track.url],
       html5: true,
       onload: () => setIsLoading(false),
       onplay: () => setIsLoading(false),
-      onplayerror: (id, error) => {
-        console.error('Playback error:', error);
+      onplayerror: () => {
         acc[track.id].once('unlock', () => acc[track.id].play());
       },
     });
     return acc;
-  }, {});
+  }, {} as Record<number, Howl>);
 
   const handlePlayPause = (id: number) => {
     if (isLoading) return;
 
-    Howler._autoResume();
+    // Safeguard for _autoResume if it exists
+    Howler._autoResume?.();
 
     if (currentTrackId === id) {
       if (sounds[id].playing()) {
